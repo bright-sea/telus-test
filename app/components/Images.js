@@ -1,8 +1,8 @@
-import React, { Component } from 'react'
+import React from 'react'
 import PropTypes from 'prop-types'
 import { List } from 'immutable'
 
-class Images extends Component {
+class Images extends React.Component {
   render() {
 
     const {

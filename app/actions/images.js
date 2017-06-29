@@ -3,6 +3,7 @@ import { CALL_API, CHAIN_API } from 'middleware/api'
 export const LOADED_IMAGES = Symbol('LOADED_IMAGES')
 export const CHANGE_FILTER = Symbol('CHANGE_FILTER')
 export const CHANGE_SIZE = Symbol('CHANGE_SIZE')
+export const CHANGE_PAGE = Symbol('CHANGE_PAGE')
 
 
 export function loadImages(setting) {
@@ -13,8 +14,8 @@ export function loadImages(setting) {
       query: {
         api_key: 'dc6zaTOxFJmzC',
         q: setting?setting.get("filter"):"",
-        limit: 20,
-        offset: 0
+        limit: setting?setting.get("limit"):25,
+        offset: setting?setting.get("offset"):0
       },
       successType: LOADED_IMAGES
     }
@@ -36,5 +37,12 @@ export function changeSize(size) {
   }
 }
 
+
+export function changePage(page) {
+  return {
+    type: CHANGE_PAGE,
+    payload: page
+  }
+}
 
 

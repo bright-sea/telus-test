@@ -18,6 +18,19 @@ export default function(state = defaultState, action) {
     case ActionType.CHANGE_SIZE:
       return state.merge({ size: action.payload })
 
+    case ActionType.CHANGE_PAGE:
+      return state.merge({ offset: (action.payload - 1)*state.get("limit") })
+
+    case ActionType.LOADED_IMAGES:
+
+      console.log("pagination",action.response.pagination);
+      return state.merge({
+        total: action.response.pagination.totalCount,
+        offset: action.response.pagination.offset
+      })
+      break
+
+
     default:
       return state
   }
